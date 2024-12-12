@@ -1,12 +1,15 @@
 Package: legor
 Type: Package
-Title: Legor Package for Investigating Lego Sets
+Title: Tools for Analyzing LEGO Data. 
 Version: 0.1.0
-Author: Who wrote it
+Author: Megan, Airmuid, Aaron, Robert 
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Ideas - 1. Fit a linear model to predict the number of pieces based on year, 
+2. Fit a LOESS model to predict the retail price based on yearThis package provides tools to analyze LEGO datasets. 
+Includes functions to fit linear and LOESS models for predicting attributes 
+such as the number of pieces based on year and the retail price based on year.
+Additional features enable easy visualization and exploration of LEGO data trends.
+License: MIT + file License 
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
