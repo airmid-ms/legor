@@ -13,9 +13,4 @@
 #' \item{agerange_min}{The recommended minimum age for the Lego set.}
 #' \item{us_retailprice}{The US retail price in US dollars at the time of the datasets creation.}
 #' }
-#'
-#' @examples
-#' data(lego_data)
-
-# this file still produces a usage section for some reason, want to remove.
 "lego_data"

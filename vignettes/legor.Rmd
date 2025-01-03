@@ -1,0 +1,66 @@
+---
+title: "legor"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{legor}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE}
+library(legor)
+```
+
+## Introduction
+__legor__ is an R package that provides lego data spanning the years 2005-2022. The package performs (describe modelling) modelling and creates plots of (describe plotting) variables relationships.
+
+* `fit_lego()`: for fitting a linear regression model to the chosen data.
+
+* `lego_plot()`: for plotting ggplot2 based visualisations.
+
+The purpose of this vignette is to show the intended usage of the 'legor' package. The package contains a data set `lego_data` intended to be used with these functions.
+
+### Installation
+First ensure [R](https://cran.r-project.org/) is installed, installing [RStudio](https://www.rstudio.com/) afterwards is optional but recommended to improve user experience. __legor__ runs on Windows, Mac OS X, and Linux. 
+
+In R type the following commands into the Console tab.
+```{r, eval = FALSE}
+install.packages('devtools')
+devtools::install_github('airmid-ms/legor') 
+library(legor)
+```
+
+Now the __legor__ functions outlined at the beginning of this page, including the dataset, will be accessible.
+
+Visit the [GitHub page](https://github.com/airmid-ms/legor) to install any future package updates. This page can also be used to report any bugs or issues with the package.
+
+Before attempting to use the functions in this package you'll first need to load the relevant data named `lego_data`. __tbr__ The example below demonstrates how to preview the dataset.
+
+```{r}
+data(lego_data)
+head(lego_data) # to be removed
+```
+__edit this part out once issue with loading is solved__ First the data will be lazily loaded into your environment as a "promise" type object. It will not be fully loaded into your environment until you call the dataset in another function such as `head()` or `fit_lego()`. To learn more about this data set type
+```{r, eval = FALSE}
+?lego_data
+```
+
+
+
+## fit_lego()
+This fit method takes objects located in the `lego_data` dataset and incorporates select variables into a linear regression model. ... add info on other models included and their mathematical formulas using LaTEX
+
+* examples
+
+
+## plot_lego()
+need several examples with legends.
+
+can the functions above be nested? if so include example in this section.
