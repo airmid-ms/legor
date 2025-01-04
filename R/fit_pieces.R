@@ -63,13 +63,6 @@ fit_lego <- function(lego_data, ...) {
   invisible(output)
 }
 
-
-
-
-
-
-
-
 #' fit_lego2
 #'
 #' @param lego_data A data frame or tibble containing LEGO set information, including columns like "year", "pieces" and "us_retailprice"
