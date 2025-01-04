@@ -67,7 +67,6 @@ fit_lego <- function(lego_data, ...) {
 
 
 
-#Update to allow the user to input the columns to be plotted
 
 
 
