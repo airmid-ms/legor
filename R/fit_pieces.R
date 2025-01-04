@@ -114,3 +114,10 @@ fit_lego(lego_data, "pieces", "year")
 
 #test
 
+
+
+
+#Update to allow the user to input the columns to be plotted
+
+
+
