@@ -1,40 +1,30 @@
-lego_data <- as.data.frame(lego_data)
-
-## Modify the fit function to handle data frames directly
 fit <- function(obj,
-                data_type = c("yearly"),
                 fit_type = c("lm", "loess", "polynomial"),
-                ploynomial_degree = 3) {
-  ## Ensure the input is a data frame
-  if (!is.data.frame(obj)) stop("The input object must be a data frame")
-
-  ## To find which data set to use
-  data_type <- match.arg(data_type)
+                polynomial_degree = 3) {
 
   ## To find which fitting type method to use
   fit_type <- match.arg(fit_type)
 
-  ## Filter and prepare data
-  if (data_type == "yearly") {
-    # Check the relevant columns exist
-    if (!all(c("pieces", "us_retailprice") %in% colnames(obj))) {
-      stop("The data must contain 'pieces' and 'us_retailprice' columns")
-    }
-    dat <- obj[!is.na(obj$pieces) & !is.na(obj$us_retailprice), ]
-  } else {
-    stop("Only 'yearly' data_type is supported currently.")
+  ## Verify that the polynomial degree is larger than or equal to 1 if the fit is picked.
+  if (fit_type == "polynomial" && (!is.numeric(polynomial_degree) || polynomial_degree < 1)) {
+    stop("'polynomial_degree' must be a numeric value larger than or equal to 1")
+  }
+
+  ## Check the relevant columns exist
+  if (!all(c("pieces", "us_retailprice") %in% colnames(obj))) {
+    stop("The data must contain 'pieces' and 'us_retailprice' columns")
   }
 
   ## Fit specified model
   mod <- switch(fit_type,
                 lm = {
-                  lm(us_retailprice ~ pieces, data = dat)
+                  lm(us_retailprice ~ pieces, data = obj)
                 },
                 loess = {
-                  loess(us_retailprice ~ pieces, data = dat)
+                  loess(us_retailprice ~ pieces, data = obj)
                 },
                 polynomial = {
-                  lm(us_retailprice ~ poly(pieces, polynomial_degree), data = dat)
+                  lm(us_retailprice ~ poly(pieces, polynomial_degree), data = obj)
                 })
 
   ## Print model summary
@@ -42,14 +32,11 @@ fit <- function(obj,
 
   ## Create output object
   output <- list(model = mod,
-                 data = dat,
-                 data_type = data_type,
+                 data = obj,
                  fit_type = fit_type)
-
-  ## Add class
   class(output) <- c("lego_fit", "listof")
   invisible(output)
 }
 
 ## Example of use
-model <- fit(lego_data, "yearly", 'lm')
+model <- fit(lego_data, 'lm')
