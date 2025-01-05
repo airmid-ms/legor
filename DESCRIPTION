@@ -2,7 +2,9 @@ Package: legor
 Type: Package
 Title: Tools for Analyzing LEGO Data
 Version: 0.1.0
-Author: Megan, Áirmid, Aaron, Robert 
+Authors@R: c(person("Megan", "Healy", email="megan.healy.2022@mumail.ie", role= "aut"),
+  person("Áirmid", "Murphy-Scott", email="a.murphyscott@mumail.ie", role="aut"),
+  person("Aaron", "Church", email="aaron.church.2021@mumail.ie@mumail.ie", role="aut"))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: Ideas - 1. Fit a linear model to predict the number of pieces based on year, 2. Fit a LOESS model to predict the retail price based on yearThis package provides tools to analyze LEGO datasets. Includes functions to fit linear and LOESS models for predicting attributes such as the number of pieces based on year and the retail price based on year. Additional features enable easy visualization and exploration of LEGO data trends.
 License: MIT + file License 
@@ -11,6 +13,7 @@ LazyData: true
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)
+URL: https://github.com/airmid-ms/legor
 Suggests: 
     knitr,
     rmarkdown
