@@ -1,4 +1,12 @@
-fit <- function(obj,
+## legor is added as a class to lego_data but also keeps the data as a data frame.
+class(lego_data) <- c("legor", class(lego_data))
+
+## Define the generic function
+fit <- function(obj, ...) {
+  UseMethod("fit")
+}
+
+fit.legor <- function(obj,
                 fit_type = c("lm", "loess", "polynomial"),
                 polynomial_degree = 3) {
 
