@@ -63,14 +63,6 @@ fit_lego <- function(lego_data, ...) {
   invisible(output)
 }
 
-
-
-
-
-#Update to allow the user to input the columns to be plotted
-
-
-
 #' fit_lego2
 #'
 #' @param lego_data A data frame or tibble containing LEGO set information, including columns like "year", "pieces" and "us_retailprice"
@@ -121,4 +113,11 @@ fit_lego2 <- function(lego_data, x_col, y_col, ...) {
 fit_lego(lego_data, "pieces", "year")
 
 #test
+
+
+
+
+#Update to allow the user to input the columns to be plotted
+
+
 
