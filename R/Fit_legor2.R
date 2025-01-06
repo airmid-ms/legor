@@ -48,3 +48,5 @@ fit.legor <- function(obj,
 
 ## Example of use
 model <- fit(lego_data, 'lm')
+model2 <- fit(lego_data, 'loess')
+model3 <- fit.legor(lego_data, 'polynomial')
