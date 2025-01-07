@@ -23,6 +23,8 @@
 #' @importFrom dplyr arrange desc
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
+#' @importFrom stats na.omit predict
+#' @importFrom utils head
 #' @export
 #'
 #' @examples
@@ -77,3 +79,4 @@ plot.lego_fit <- function(x, pieces_grid = pretty(x$data$pieces, n = 200), ...) 
               vjust = -0.5) +
     scale_color_viridis_c(option = "inferno")
 }
+
