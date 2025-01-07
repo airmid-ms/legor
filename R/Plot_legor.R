@@ -1,3 +1,39 @@
+#' Plot Lego Fit Model
+#'
+#' Makes a plot for the fitted Lego model such as a scatter plot of the data, with a line representing
+#' the fitted model, and labels the top three most expensive lego sets.
+#'
+#' @param x An object of class \code{"lego_fit"}, outputted from the \code{\link{fit}} function.
+#' @param pieces_grid A numeric vector specifying the grid of piece counts over which to calculate
+#' predicted values for the fitted model. Defaults to \code{pretty(x$data$pieces, n = 200)}. This
+#' is used to create the smooth fitted line.
+#' @param ... Catches the unused arguments to \code{ggplot}.
+#'
+#' @details This function creates a plot to visualize the relationship between number of lego pieces
+#' and the US retail price, overlaid with fitted model. The top three most expensive lego sets are
+#' also highlighted in the plot by labels of their names.
+#'
+#' The fitted line is created by the model specified in \code{x$fit_type}. Supported models
+#' include linear regression (\code{"lm"}), LOESS (\code{"loess"}), and polynomial regression (\code{"polynomial"}).
+#'
+#' @return A \code{ggplot} object showing the scatter plot of the data, the fitted model,
+#' and labels for the top three most expensive lego sets.
+#'
+#' @import ggplot2
+#' @importFrom dplyr arrange desc
+#' @importFrom tibble tibble
+#' @importFrom magrittr %>%
+#' @export
+#'
+#' @examples
+#' model <- fit(lego_data, fit_type = "lm")
+#' plot(model)
+#'
+#' model2 <- fit(lego_data, fit_type = "loess")
+#' plot(model2)
+#'
+#' model3 <- fit(lego_data, fit_type = "polynomial", polynomial_degree = 3)
+#' plot(model3)
 plot.lego_fit <- function(x, pieces_grid = pretty(x$data$pieces, n = 200), ...) {
 
   ## Check that the input is a lego_fit object
@@ -41,8 +77,3 @@ plot.lego_fit <- function(x, pieces_grid = pretty(x$data$pieces, n = 200), ...) 
               vjust = -0.5) +
     scale_color_viridis_c(option = "inferno")
 }
-
-## Examples
-plot(model)
-plot(model2)
-plot(model3)
