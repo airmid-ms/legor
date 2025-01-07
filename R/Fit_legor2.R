@@ -37,14 +37,9 @@ fit <- function(obj, ...) {
 #' @export
 #'
 #' @examples
-#' # Fit a linear model to the LEGO data
 #' model <- fit(lego_data, 'lm')
-#'
-#' # Fit a LOESS model to the LEGO data
 #' model2 <- fit(lego_data, 'loess')
-#'
-#' # Fit a polynomial model to the LEGO data with degree 2
-#' model3 <- fit.legor(lego_data, 'polynomial', polynomial_degree = 2)
+#' model3 <- fit(lego_data, 'polynomial', polynomial_degree = 2)
 fit.legor <- function(obj,
                 fit_type = c("lm", "loess", "polynomial"),
                 polynomial_degree = 3, ...) {
