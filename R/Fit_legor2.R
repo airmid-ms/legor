@@ -1,11 +1,51 @@
-## legor is added as a class to lego_data but also keeps the data as a data frame.
-class(lego_data) <- c("legor", class(lego_data))
-
-## Define the generic function
+#' Fit LEGO Data Models
+#'
+#' This package provides functions to fit various models to LEGO datasets, including linear regression (`lm`), LOESS, and polynomial regression.
+#'
+#' ## Define the Generic Function
+#'
+#' The `fit()` function is a generic function for fitting models to LEGO data. It calls the appropriate method based on the class of the object passed to it.
+#'
+#' @param obj A data frame containing LEGO data. It must include columns such as `pieces` and `us_retailprice`.
+#' @param ... Additional arguments passed to specific methods (e.g., `fit_type`, `polynomial_degree`).
+#'
+#' @return An object of class `"lego_fit"` which contains the fitted model, input data, and the fit type used.
+#'
+#' @export
 fit <- function(obj, ...) {
   UseMethod("fit")
 }
 
+#' Fit LEGO Model Using Different Methods
+#'
+#' Fits a specified model to LEGO data using linear regression (`lm`), LOESS, or polynomial regression.
+#'
+#' @param obj A data frame containing LEGO data. It must include columns `pieces` and `us_retailprice`.
+#' @param fit_type A character string specifying the type of fit to apply. Choices are: `"lm"`, `"loess"`, or `"polynomial"`. Default is `"lm"`.
+#' @param polynomial_degree A numeric value specifying the degree of the polynomial for polynomial regression. Default is 3. Must be greater than or equal to 1 for polynomial regression.
+#'
+#' @details
+#' The function allows users to fit linear models (`lm`), local polynomial regression (`loess`), or polynomial regression to LEGO data. The input data frame must contain the columns `pieces` and `us_retailprice`.
+#' If `"polynomial"` is chosen, the user can specify the degree of the polynomial using the `polynomial_degree` argument.
+#'
+#' @return An object of class `"lego_fit"`. This object contains:
+#' \item{model}{The fitted model object (`lm`, `loess`, or `lm` for polynomial).}
+#' \item{data}{The data frame passed to the function.}
+#' \item{fit_type}{The type of model used (either `"lm"`, `"loess"`, or `"polynomial"`).}
+#'
+#' @examples
+#' \dontrun{
+#' # Fit a linear model to the LEGO data
+#' model <- fit(lego_data, 'lm')
+#'
+#' # Fit a LOESS model to the LEGO data
+#' model2 <- fit(lego_data, 'loess')
+#'
+#' # Fit a polynomial model to the LEGO data with degree 2
+#' model3 <- fit.legor(lego_data, 'polynomial', polynomial_degree = 2)
+#' }
+#'
+#' @export
 fit.legor <- function(obj,
                 fit_type = c("lm", "loess", "polynomial"),
                 polynomial_degree = 3) {
@@ -45,8 +85,3 @@ fit.legor <- function(obj,
   class(output) <- c("lego_fit", "listof")
   invisible(output)
 }
-
-## Example of use
-model <- fit(lego_data, 'lm')
-model2 <- fit(lego_data, 'loess')
-model3 <- fit.legor(lego_data, 'polynomial')
