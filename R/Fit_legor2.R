@@ -35,7 +35,6 @@ fit <- function(obj, ...) {
 #' \item{fit_type}{The type of model used (either `"lm"`, `"loess"`, or `"polynomial"`).}
 #'
 #' @examples
-#' \dontrun{
 #' # Fit a linear model to the LEGO data
 #' model <- fit(lego_data, 'lm')
 #'
