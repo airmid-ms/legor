@@ -7,7 +7,11 @@ Authors@R: c(person("Megan", "Healy", email="megan.healy.2022@mumail.ie", role= 
   person("Aaron", "Church", email="aaron.church.2021@mumail.ie", role= "aut"),
   person("Robert", "Coffey", email="robert.coffey.2022@mumail.ie", role= "aut"))
 Maintainer: Áirmid Murphy-Scott <airmid.murphyscott.2022@mumail.ie>
-Description: Ideas - 1. Fit a linear model to predict the number of pieces based on year, 2. Fit a LOESS model to predict the retail price based on yearThis package provides tools to analyze LEGO datasets. Includes functions to fit linear and LOESS models for predicting attributes such as the number of pieces based on year and the retail price based on year. Additional features enable easy visualization and exploration of LEGO data trends.
+Description: `legor` is an R package that provides tools for analyzing LEGO datasets. The package includes functions to:
+  1. Fit linear, LOESS, and polynomial regression models to explore relationships such as the number of LEGO pieces or retail price over time.
+  2. Visualize fitted models and highlight key insights, such as top-priced LEGO sets, using high-quality `ggplot2` graphics.
+  3. Facilitate the analysis of LEGO data trends with robust and user-friendly tools for model fitting and data exploration.
+  Key features include a `fit()` function for flexible regression modeling and a `plot()` method for creating insightful visualizations. Ideal for exploring trends in LEGO datasets
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
