@@ -7,18 +7,18 @@
 fit(obj, ...)
 }
 \arguments{
-\item{obj}{A data frame containing LEGO data. It must include columns such as `pieces` and `us_retailprice`.}
+\item{obj}{A data frame containing LEGO data. It must include columns such as \code{pieces} and \code{us_retailprice}.}
 
-\item{...}{Additional arguments passed to specific methods (e.g., `fit_type`, `polynomial_degree`).}
+\item{...}{Additional arguments passed to specific methods (e.g., \code{fit_type}, \code{polynomial_degree}).}
 }
 \value{
-An object of class `"lego_fit"` which contains the fitted model, input data, and the fit type used.
+An object of class \code{"lego_fit"} which contains the fitted model, input data, and the fit type used.
 }
 \description{
-This package provides functions to fit various models to LEGO datasets, including linear regression (`lm`), LOESS, and polynomial regression.
+This package provides functions to fit various models to LEGO datasets, including linear regression (\code{"lm"}), LOESS, and polynomial regression.
 }
 \details{
 ## Define the Generic Function
 
-The `fit()` function is a generic function for fitting models to LEGO data. It calls the appropriate method based on the class of the object passed to it.
+The \code{fit()} function is a generic function for fitting models to LEGO data. It calls the appropriate method based on the class of the object passed to it.
 }
