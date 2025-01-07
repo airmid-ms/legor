@@ -23,6 +23,7 @@ fit <- function(obj, ...) {
 #' @param obj A data frame containing LEGO data. It must include columns `pieces` and `us_retailprice`.
 #' @param fit_type A character string specifying the type of fit to apply. Choices are: `"lm"`, `"loess"`, or `"polynomial"`. Default is `"lm"`.
 #' @param polynomial_degree A numeric value specifying the degree of the polynomial for polynomial regression. Default is 3. Must be greater than or equal to 1 for polynomial regression.
+#' @param ... Additional arguments (currently not being used) saved for future methods or extensions.
 #'
 #' @details
 #' The function allows users to fit linear models (`lm`), local polynomial regression (`loess`), or polynomial regression to LEGO data. The input data frame must contain the columns `pieces` and `us_retailprice`.
@@ -48,7 +49,7 @@ fit <- function(obj, ...) {
 #' @export
 fit.legor <- function(obj,
                 fit_type = c("lm", "loess", "polynomial"),
-                polynomial_degree = 3) {
+                polynomial_degree = 3, ...) {
 
   ## To find which fitting type method to use
   fit_type <- match.arg(fit_type)
