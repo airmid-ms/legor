@@ -34,6 +34,7 @@ fit <- function(obj, ...) {
 #' \item{data}{The data frame passed to the function.}
 #' \item{fit_type}{The type of model used (either `"lm"`, `"loess"`, or `"polynomial"`).}
 #'
+#' @importFrom stats lm loess
 #' @export
 #'
 #' @examples
