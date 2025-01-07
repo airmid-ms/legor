@@ -8,11 +8,16 @@ Authors@R: c(person("Megan", "Healy", email="megan.healy.2022@mumail.ie", role= 
   person("Robert", "Coffey", email="robert.coffey.2022@mumail.ie", role= "aut"))
 Maintainer: Áirmid Murphy-Scott <airmid.murphyscott.2022@mumail.ie>
 Description: Ideas - 1. Fit a linear model to predict the number of pieces based on year, 2. Fit a LOESS model to predict the retail price based on yearThis package provides tools to analyze LEGO datasets. Includes functions to fit linear and LOESS models for predicting attributes such as the number of pieces based on year and the retail price based on year. Additional features enable easy visualization and exploration of LEGO data trends.
-License: MIT + file License 
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Depends: R (>= 4.2.0)
+Imports:
+    dplyr,
+    ggplot2,
+    magrittr,
+    tibble
 URL: https://github.com/airmid-ms/legor
 Suggests: 
     knitr,
