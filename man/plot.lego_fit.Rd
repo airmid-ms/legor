@@ -16,8 +16,8 @@ is used to create the smooth fitted line.}
 \item{...}{Catches the unused arguments to \code{ggplot}.}
 }
 \value{
-A \code{ggplot} object displaying the scatter plot of the data, the fitted model,
-and annotations for the top three most expensive LEGO sets.
+A \code{ggplot} object showing the scatter plot of the data, the fitted model,
+and labels for the top three most expensive lego sets.
 }
 \description{
 Makes a plot for the fitted Lego model such as a scatter plot of the data, with a line representing
@@ -25,7 +25,7 @@ the fitted model, and labels the top three most expensive lego sets.
 }
 \details{
 This function creates a plot to visualize the relationship between number of lego pieces
-and the US retail price, covered with fitted model. The top three most expensive lego sets are
+and the US retail price, overlaid with fitted model. The top three most expensive lego sets are
 also highlighted in the plot by labels of their names.
 
 The fitted line is created by the model specified in \code{x$fit_type}. Supported models
