@@ -54,12 +54,12 @@ fit.legor <- function(obj,
 
   ## Create output object
   output <- list(model = mod,
-                 data = filtered_data,
+                 data = obj,
                  fit_type = fit_type
   )
   class(output) <- c("lego_fit", "listof")
   invisible(output)
 }
 fit(lego_data, "lm")
-fit(lego_data, "lm", year_range = c(2005, 2019))
+fit(lego_data, "lm", year_range = c(2018, 2020))
 
