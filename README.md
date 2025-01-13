@@ -56,7 +56,7 @@ library(legor)
 data <- lego_data  # Replace with your data
 
 # Fit a polynomial regression model
-fit_result <- fit(data, fit_type = "polynomial", polynomial_degree = 3)
+fit_result <- fit(data, fit_type = "polynomial", polynomial_degree = 3, year_range = c(2010, 2020))
 
 # Visualize the fitted model
 plot(fit_result)
