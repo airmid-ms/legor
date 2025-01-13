@@ -41,8 +41,8 @@ devtools::install_github("airmid-ms/legor")
 
 ## Functions Overview
 
-- `fit.legor()`: Fits regression models (linear, LOESS, polynomial) to LEGO datasets.
-- `plot.legor_fit()`: Visualizes the fitted models and highlights important data points.
+- `fit()`: Fits regression models (linear, LOESS, polynomial) to LEGO datasets.
+- `plot()`: Visualizes the fitted models and highlights important data points.
 - Additional utility functions for data manipulation and analysis.
 
 ## Example
