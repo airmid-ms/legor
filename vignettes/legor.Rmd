@@ -1,66 +1,95 @@
----
-title: "legor"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{legor}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+--- 
+title: "legor" 
+author: "Megan Healy, Áirmid Murphy-Scott, Aaron Church, Robert Coffey" 
+date: "`r Sys.Date()`" 
+output: 
+  bookdown::html_document2:
+      base_format: rmarkdown::html_vignette
+      fig_caption: yes
+      number_sections: no
+vignette: > 
+  %\VignetteIndexEntry{legor} 
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteEncoding{UTF-8} 
+--- 
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-```{r setup, echo = FALSE}
+```{r, include = FALSE} 
+knitr::opts_chunk$set(fig.width=7, fig.height = 5, fig.align = 'center', 
+                      fig.show='hold', warning=FALSE,
+                      message=FALSE, progress=FALSE,
+                      collapse = TRUE, comment = "#>" ) 
 library(legor)
-```
+library(ggplot2)
+``` 
 
-## Introduction
-__legor__ is an R package that provides lego data spanning the years 2005-2022. The package performs (describe modelling) modelling and creates plots of (describe plotting) variables relationships.
+## Introduction 
+__legor__ is an R package that provides LEGO data spanning the years 2005-2022. The package performs 3 types of regression modelling and plots the relationship between the US retail price and the number of pieces in a LEGO set. 
 
-* `fit_lego()`: for fitting a linear regression model to the chosen data.
+* `fit()`: for fitting a linear regression model to the chosen data. 
+* `plot()`: for plotting ggplot2 based visualisations. 
 
-* `lego_plot()`: for plotting ggplot2 based visualisations.
+The purpose of this vignette is to show the usage of the 'legor' package. The package contains a data set `lego_data` intended to be used with these functions.
 
-The purpose of this vignette is to show the intended usage of the 'legor' package. The package contains a data set `lego_data` intended to be used with these functions.
+### Installation 
+First ensure [R](https://cran.r-project.org/) is installed, installing [RStudio](https://www.rstudio.com/) afterwards is optional but recommended to improve user experience. __legor__ runs on Windows, Mac OS X, and Linux. In R type the following commands into the Console tab. 
 
-### Installation
-First ensure [R](https://cran.r-project.org/) is installed, installing [RStudio](https://www.rstudio.com/) afterwards is optional but recommended to improve user experience. __legor__ runs on Windows, Mac OS X, and Linux. 
-
-In R type the following commands into the Console tab.
-```{r, eval = FALSE}
-install.packages('devtools')
+```{r, eval = FALSE} 
+install.packages('devtools') 
 devtools::install_github('airmid-ms/legor') 
-library(legor)
-```
+``` 
 
-Now the __legor__ functions outlined at the beginning of this page, including the dataset, will be accessible.
 
-Visit the [GitHub page](https://github.com/airmid-ms/legor) to install any future package updates. This page can also be used to report any bugs or issues with the package.
-
-Before attempting to use the functions in this package you'll first need to load the relevant data named `lego_data`. __tbr__ The example below demonstrates how to preview the dataset.
-
-```{r}
+Now the __legor__ functions outlined at the beginning of this page, including the dataset, will be accessible. Visit the [GitHub page](https://github.com/airmid-ms/legor) to install any future package updates. This page can also be used to report any bugs or issues with the package. Before attempting to use the functions in this package you'll first need to load the relevant data named `lego_data`. 
+```{r} 
 data(lego_data)
-head(lego_data) # to be removed
-```
-__edit this part out once issue with loading is solved__ First the data will be lazily loaded into your environment as a "promise" type object. It will not be fully loaded into your environment until you call the dataset in another function such as `head()` or `fit_lego()`. To learn more about this data set type
-```{r, eval = FALSE}
+``` 
+Additional information can be learned about the dataset by typing 
+
+```{r, eval = FALSE} 
 ?lego_data
+``` 
+
+## fit() 
+This fit method takes the `us_retailprice` and `pieces` located in the `lego_data` data set and performs one of three regression models using `us_retailprice` as the response at an interval specified by `year_range`. 
+The argument `fit_type` applies a linear regression, LOESS regression or polynomial regression model to the data. If choosing a polynomial regression the polynomial degree can be specified with `polynomial_degree`. 
+
+```{r} 
+fit_model <- fit(lego_data, 
+                 fit_type = "lm",
+                 year_range = c(2005, 2012)) 
+``` 
+The output shows that for every lego piece, the price increases by 0.089678 and the relationship between both variables is statistically significant.
+
+## plot() 
+This `plot()` method visualises the output of the fitted model and labels the 3 lego sets with the highest combination of price and pieces for the specified range of time. The first way of plotting the fitted model is using 
+
+```{r lmplot, fig.cap="Lm regression applied to US retail price and pieces from a subset of LEGO set data"} 
+plot(fit_model) 
+``` 
+
+Figure \@ref(fig:lmplot) indicates that the assumption of linearity made in `fit_model` is appropriate for is subset of LEGO set data.
+
+This plot shows that `us_retailprice` and `pieces` have a strong positive linear relationship.
+
+The `fit()` function can be nested within the `plot()` function as shown below
+
+```{r, results="hide"}
+fit_model2 <- plot(fit(lego_data, 
+                       fit_type = "polynomial", 
+                       polynomial_degree = 4, 
+                       year_range = c(2013, 2018)))
+``` 
+
+The data used for this plot shows that a linear assumption is correct and a polynomial regression model is not suitable for this data.
+
+Further modifications are possible with the __legor__ plot by assigning it to an object and attaching additional `ggplot2` code. In the case of the __legor__ package the data is highly skewed.
+
+```{r polyplot, fig.cap="Polynomial regression applied to US retail price and pieces from a subset of LEGO set data"}
+p <- plot(fit_model2)
+p +  coord_cartesian(xlim = c(-1, 2000), ylim = c(-1, 200)) +
+     ggtitle("Zoomed in polynomial fit based on lego_data")
 ```
 
+Figure \@ref(fig:polyplot) focuses on a portion of the plot produced by `fit_model2`.
 
-
-## fit_lego()
-This fit method takes objects located in the `lego_data` dataset and incorporates select variables into a linear regression model. ... add info on other models included and their mathematical formulas using LaTEX
-
-* examples
-
-
-## plot_lego()
-need several examples with legends.
-
-can the functions above be nested? if so include example in this section.
+Zooming in not only separates previously overlapping data points, it also visualises the common prices for LEGO sets.

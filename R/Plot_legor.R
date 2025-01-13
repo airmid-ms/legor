@@ -72,11 +72,11 @@ plot.lego_fit <- function(x, pieces_grid = pretty(x$data$pieces, n = 200), ...) 
     theme_linedraw() +
     xlab("Number of Pieces") +
     ylab("US Retail Price") +
-    ggtitle(paste(x$fit_type, "Fit based on lego_data")) +
+    ggtitle(paste(x$fit_type, "fit based on lego_data (", min(df$year), "-", max(df$year), ")")) +
     geom_line(data = fits, aes(x = pieces, y = pred, colour = pred)) +
     geom_text(data = top3_df,
               aes(label = name),
               vjust = -0.5) +
-    scale_color_viridis_c(option = "inferno")
+    scale_color_viridis_c(option = "plasma")
 }
 
