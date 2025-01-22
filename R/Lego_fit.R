@@ -72,7 +72,7 @@ fit.legor <- function(obj,
       stop("'year_range' must be a numeric vector of length 2")
     }
     if (year_range[1] > year_range[2]) {
-      stop("'year_range' must be in ascending order (smaller number first) try swapping the order of year range")
+      stop("'Year range' must be in ascending order, try swapping your chosen years")
     }
     obj <- subset(lego_data, year >= year_range[1] & year <= year_range[2])
   }
@@ -101,3 +101,4 @@ fit.legor <- function(obj,
   class(output) <- c("lego_fit", "listof")
   invisible(output)
 }
+fit(lego_data, fit_type = "lm", year_range = c(2021,2020))

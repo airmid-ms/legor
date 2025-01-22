@@ -36,10 +36,10 @@ test_that("Lego_fit.R handles missing columns", {
   )
 })
 
-# test_that("Lego_fit.R validates year_range error", {
-#   load("~/legor/data/lego_data.rda")
-#   expect_error(
-#     fit(lego_data, fit_type = "lm", year_range = c(2010,2014)),
-#     "Year range must be in ascending order, try swapping your selected years"
-#   )
-# })
+test_that("Lego_fit.R validates year_range error", {
+  load("~/legor/data/lego_data.rda")
+  expect_error(
+    fit(lego_data, fit_type = "lm", year_range = c(2014,2010)),
+    "'Year range' must be in ascending order, try swapping your chosen years"
+  )
+})
