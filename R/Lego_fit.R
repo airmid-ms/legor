@@ -101,4 +101,3 @@ fit.legor <- function(obj,
   class(output) <- c("lego_fit", "listof")
   invisible(output)
 }
-fit(lego_data, fit_type = "lm", year_range = c(2021,2020))

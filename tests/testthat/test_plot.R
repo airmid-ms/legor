@@ -1,33 +1,43 @@
-test_that("Plot function works for 'lm' model", {
+test_that("Lego_fit.R works with 'lm'", {
   load("~/legor/data/lego_data.rda")
-  model_lm <- fit(lego_data, fit_type = "lm")
-  plot_lm <- plot(model_lm)
-  expect_s3_class(plot_lm, "gg")
+  model <- fit(lego_data, fit_type = "lm")
+  expect_s3_class(model, "lego_fit")
+  expect_true("lm" %in% class(model$model))
 })
 
-test_that("Plot produces a ggplot object", {
+test_that("Lego_fit.R works with 'loess'", {
   load("~/legor/data/lego_data.rda")
-  model_lm <- fit(lego_data, fit_type = "lm")
-  plot_lm <- plot(model_lm)
-  expect_s3_class(plot_lm, "gg")
+  model <- fit(lego_data, fit_type = "loess")
+  expect_s3_class(model, "lego_fit")
+  expect_true("loess" %in% class(model$model))
 })
 
-test_that("Plot function does not throw errors", {
+test_that("Lego_fit.R works with 'polynomial'", {
   load("~/legor/data/lego_data.rda")
-  model_lm <- fit(lego_data, fit_type = "lm")
-  expect_error(plot(model_lm), NA)
+  model <- fit(lego_data, fit_type = "polynomial", polynomial_degree = 3)
+  expect_s3_class(model, "lego_fit")
+  expect_true("lm" %in% class(model$model))
 })
 
-test_that("Plot function works for 'loess' model", {
+test_that("Lego_fit.R filters data by year_range", {
   load("~/legor/data/lego_data.rda")
-  model_loess <- fit(lego_data, fit_type = "loess")
-  plot_loess <- plot(model_loess)
-  expect_s3_class(plot_loess, "gg")
+  model <- fit(lego_data, fit_type = "lm", year_range = c(2015, 2020))
+  test_data <- subset(lego_data, year >= 2015 & year <= 2020)
+  expect_equal(nrow(model$data), nrow(test_data))
 })
 
-test_that("Plot function works for 'polynomial' model", {
+test_that("Lego_fit.R handles missing columns", {
+  missing_dat <- lego_data[, !colnames(lego_data) %in% "pieces", drop = FALSE]
+  expect_error(
+    fit(missing_dat, fit_type = "lm"),
+    "The data must contain 'pieces' and 'us_retailprice' columns"
+  )
+})
+
+test_that("Lego_fit.R validates year_range error", {
   load("~/legor/data/lego_data.rda")
-  model_poly <- fit(lego_data, fit_type = "polynomial", polynomial_degree = 2)
-  plot_poly <- plot(model_poly)
-  expect_s3_class(plot_poly, "gg")
+  expect_error(
+    fit(lego_data, fit_type = "lm", year_range = c(2014,2010)),
+    "'Year range' must be in ascending order, try swapping your chosen years"
+  )
 })
